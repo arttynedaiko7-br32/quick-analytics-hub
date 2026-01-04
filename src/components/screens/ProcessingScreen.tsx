@@ -7,11 +7,11 @@ interface ProcessingScreenProps {
 }
 
 const processingSteps = [
-  { id: 1, text: 'Reading your data...', duration: 800 },
-  { id: 2, text: 'Analyzing patterns...', duration: 1200 },
-  { id: 3, text: 'Finding trends...', duration: 1000 },
-  { id: 4, text: 'Calculating statistics...', duration: 800 },
-  { id: 5, text: 'Generating insights...', duration: 1200 },
+  { id: 1, text: 'Читаем ваши данные...', duration: 800 },
+  { id: 2, text: 'Анализируем паттерны...', duration: 1200 },
+  { id: 3, text: 'Ищем тренды...', duration: 1000 },
+  { id: 4, text: 'Вычисляем статистику...', duration: 800 },
+  { id: 5, text: 'Генерируем инсайты...', duration: 1200 },
 ];
 
 export function ProcessingScreen({ onComplete }: ProcessingScreenProps) {
@@ -74,10 +74,10 @@ export function ProcessingScreen({ onComplete }: ProcessingScreenProps) {
         {/* Status text */}
         <div className="text-center space-y-2">
           <h2 className="text-xl font-semibold text-foreground animate-fade-in">
-            {processingSteps[currentStep]?.text || 'Finalizing...'}
+            {processingSteps[currentStep]?.text || 'Завершаем...'}
           </h2>
           <p className="text-sm text-muted-foreground">
-            Please wait while we analyze your data
+            Пожалуйста, подождите, пока мы анализируем ваши данные
           </p>
         </div>
 

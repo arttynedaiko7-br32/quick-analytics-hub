@@ -44,11 +44,11 @@ export function UploadScreen({ onFileUpload, onGoogleSheetLink }: UploadScreenPr
 
   const handleSheetSubmit = () => {
     if (!sheetUrl.trim()) {
-      setUrlError('Please enter a Google Sheets URL');
+      setUrlError('Пожалуйста, введите ссылку на Google Sheets');
       return;
     }
     if (!sheetUrl.includes('docs.google.com/spreadsheets')) {
-      setUrlError('Please enter a valid Google Sheets URL');
+      setUrlError('Пожалуйста, введите корректную ссылку на Google Sheets');
       return;
     }
     setUrlError('');
@@ -62,14 +62,14 @@ export function UploadScreen({ onFileUpload, onGoogleSheetLink }: UploadScreenPr
         <div className="text-center space-y-4 pt-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium">
             <Sparkles className="w-4 h-4" />
-            AI-Powered Analytics
+            ИИ-аналитика
           </div>
           <h1 className="text-3xl font-bold text-foreground leading-tight">
-            Transform Data Into
-            <span className="gradient-text block">Actionable Insights</span>
+            Превратите данные в
+            <span className="gradient-text block">полезные инсайты</span>
           </h1>
           <p className="text-muted-foreground text-base max-w-sm mx-auto">
-            Upload your spreadsheet and get instant AI analysis with charts, forecasts, and recommendations.
+            Загрузите таблицу и получите мгновенный ИИ-анализ с графиками, прогнозами и рекомендациями.
           </p>
         </div>
 
@@ -94,20 +94,20 @@ export function UploadScreen({ onFileUpload, onGoogleSheetLink }: UploadScreenPr
           <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
             <Upload className="w-7 h-7 text-primary" />
           </div>
-          <p className="font-semibold text-foreground mb-1">Upload Spreadsheet</p>
+          <p className="font-semibold text-foreground mb-1">Загрузить таблицу</p>
           <p className="text-sm text-muted-foreground">
-            Drop your file here or tap to browse
+            Перетащите файл сюда или нажмите для выбора
           </p>
           <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
             <FileSpreadsheet className="w-4 h-4" />
-            <span>Excel (.xlsx, .xls) or CSV</span>
+            <span>Excel (.xlsx, .xls) или CSV</span>
           </div>
         </div>
 
         {/* Divider */}
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-border" />
-          <span className="text-sm text-muted-foreground font-medium">or</span>
+          <span className="text-sm text-muted-foreground font-medium">или</span>
           <div className="flex-1 h-px bg-border" />
         </div>
 
@@ -115,12 +115,12 @@ export function UploadScreen({ onFileUpload, onGoogleSheetLink }: UploadScreenPr
         <div className="space-y-3">
           <label className="flex items-center gap-2 text-sm font-medium text-foreground">
             <Link2 className="w-4 h-4 text-primary" />
-            Import from Google Sheets
+            Импорт из Google Sheets
           </label>
           <div className="flex gap-2">
             <Input
               type="url"
-              placeholder="Paste your Google Sheets link..."
+              placeholder="Вставьте ссылку на Google Sheets..."
               value={sheetUrl}
               onChange={(e) => {
                 setSheetUrl(e.target.value);
@@ -134,16 +134,16 @@ export function UploadScreen({ onFileUpload, onGoogleSheetLink }: UploadScreenPr
           </div>
           {urlError && <p className="text-sm text-destructive">{urlError}</p>}
           <p className="text-xs text-muted-foreground">
-            Make sure your sheet is set to "Anyone with the link can view"
+            Убедитесь, что доступ к таблице открыт для всех по ссылке
           </p>
         </div>
 
         {/* Features */}
         <div className="grid grid-cols-3 gap-3 pt-4">
           {[
-            { icon: '📊', label: 'Auto Charts' },
-            { icon: '🤖', label: 'AI Insights' },
-            { icon: '📄', label: 'PDF Export' },
+            { icon: '📊', label: 'Авто-графики' },
+            { icon: '🤖', label: 'ИИ-инсайты' },
+            { icon: '📄', label: 'Экспорт PDF' },
           ].map((feature) => (
             <div key={feature.label} className="insight-card text-center py-4">
               <span className="text-2xl mb-2 block">{feature.icon}</span>

@@ -7,37 +7,37 @@ export const createMockUploadedFile = (fileName: string): UploadedFile => ({
   type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   sheets: [
     {
-      name: 'Sales Data',
+      name: 'Данные продаж',
       rowCount: 1247,
       columnCount: 8,
-      headers: ['Date', 'Product', 'Category', 'Revenue', 'Units', 'Region', 'Rep', 'Status'],
+      headers: ['Дата', 'Продукт', 'Категория', 'Выручка', 'Единицы', 'Регион', 'Менеджер', 'Статус'],
       preview: [
-        { Date: '2024-01-15', Product: 'Widget Pro', Category: 'Electronics', Revenue: 2450, Units: 35, Region: 'North', Rep: 'Alice', Status: 'Completed' },
-        { Date: '2024-01-16', Product: 'Gadget X', Category: 'Electronics', Revenue: 1890, Units: 27, Region: 'South', Rep: 'Bob', Status: 'Completed' },
-        { Date: '2024-01-17', Product: 'Tool Set', Category: 'Hardware', Revenue: 3200, Units: 64, Region: 'East', Rep: 'Charlie', Status: 'Pending' },
-        { Date: '2024-01-18', Product: 'Widget Pro', Category: 'Electronics', Revenue: 1750, Units: 25, Region: 'West', Rep: 'Diana', Status: 'Completed' },
-        { Date: '2024-01-19', Product: 'Gadget X', Category: 'Electronics', Revenue: 2100, Units: 30, Region: 'North', Rep: 'Alice', Status: 'Completed' },
+        { Дата: '2024-01-15', Продукт: 'Виджет Про', Категория: 'Электроника', Выручка: 2450, Единицы: 35, Регион: 'Север', Менеджер: 'Анна', Статус: 'Завершён' },
+        { Дата: '2024-01-16', Продукт: 'Гаджет Х', Категория: 'Электроника', Выручка: 1890, Единицы: 27, Регион: 'Юг', Менеджер: 'Борис', Статус: 'Завершён' },
+        { Дата: '2024-01-17', Продукт: 'Набор инструментов', Категория: 'Оборудование', Выручка: 3200, Единицы: 64, Регион: 'Восток', Менеджер: 'Виктор', Статус: 'В обработке' },
+        { Дата: '2024-01-18', Продукт: 'Виджет Про', Категория: 'Электроника', Выручка: 1750, Единицы: 25, Регион: 'Запад', Менеджер: 'Дарья', Статус: 'Завершён' },
+        { Дата: '2024-01-19', Продукт: 'Гаджет Х', Категория: 'Электроника', Выручка: 2100, Единицы: 30, Регион: 'Север', Менеджер: 'Анна', Статус: 'Завершён' },
       ],
     },
     {
-      name: 'Inventory',
+      name: 'Склад',
       rowCount: 532,
       columnCount: 5,
-      headers: ['SKU', 'Product', 'Stock', 'Reorder Level', 'Supplier'],
+      headers: ['Артикул', 'Продукт', 'Остаток', 'Мин. остаток', 'Поставщик'],
       preview: [
-        { SKU: 'WP-001', Product: 'Widget Pro', Stock: 450, 'Reorder Level': 100, Supplier: 'SupplyCo' },
-        { SKU: 'GX-002', Product: 'Gadget X', Stock: 230, 'Reorder Level': 50, Supplier: 'TechParts' },
-        { SKU: 'TS-003', Product: 'Tool Set', Stock: 180, 'Reorder Level': 75, Supplier: 'HardwareHub' },
+        { Артикул: 'ВП-001', Продукт: 'Виджет Про', Остаток: 450, 'Мин. остаток': 100, Поставщик: 'СнабКомпани' },
+        { Артикул: 'ГХ-002', Продукт: 'Гаджет Х', Остаток: 230, 'Мин. остаток': 50, Поставщик: 'ТехДетали' },
+        { Артикул: 'НИ-003', Продукт: 'Набор инструментов', Остаток: 180, 'Мин. остаток': 75, Поставщик: 'ОборудованиеПлюс' },
       ],
     },
     {
-      name: 'Customers',
+      name: 'Клиенты',
       rowCount: 892,
       columnCount: 6,
-      headers: ['Customer ID', 'Name', 'Email', 'Segment', 'Join Date', 'Total Spend'],
+      headers: ['ID клиента', 'Название', 'Email', 'Сегмент', 'Дата регистрации', 'Общая сумма'],
       preview: [
-        { 'Customer ID': 'C001', Name: 'Acme Corp', Email: 'contact@acme.com', Segment: 'Enterprise', 'Join Date': '2023-03-15', 'Total Spend': 45000 },
-        { 'Customer ID': 'C002', Name: 'StartupXYZ', Email: 'hello@startupxyz.io', Segment: 'SMB', 'Join Date': '2023-06-22', 'Total Spend': 12500 },
+        { 'ID клиента': 'К001', Название: 'ООО Акме', Email: 'info@acme.ru', Сегмент: 'Корпоративный', 'Дата регистрации': '2023-03-15', 'Общая сумма': 45000 },
+        { 'ID клиента': 'К002', Название: 'СтартапXYZ', Email: 'hello@startupxyz.ru', Сегмент: 'Малый бизнес', 'Дата регистрации': '2023-06-22', 'Общая сумма': 12500 },
       ],
     },
   ],
@@ -46,74 +46,74 @@ export const createMockUploadedFile = (fileName: string): UploadedFile => ({
 export const mockInsights: InsightCard[] = [
   {
     id: '1',
-    title: 'Total Revenue',
-    value: '$847,320',
+    title: 'Общая выручка',
+    value: '₽847 320',
     change: 12.5,
-    changeLabel: 'vs last period',
+    changeLabel: 'к пред. периоду',
     icon: 'trending',
     color: 'primary',
   },
   {
     id: '2',
-    title: 'Average Order Value',
-    value: '$2,156',
+    title: 'Средний чек',
+    value: '₽2 156',
     change: 8.3,
-    changeLabel: 'vs last period',
+    changeLabel: 'к пред. периоду',
     icon: 'bar',
     color: 'success',
   },
   {
     id: '3',
-    title: 'Top Category',
-    value: 'Electronics',
+    title: 'Топ категория',
+    value: 'Электроника',
     change: 23.1,
-    changeLabel: 'of total sales',
+    changeLabel: 'от общих продаж',
     icon: 'pie',
     color: 'chart-3',
   },
   {
     id: '4',
-    title: 'Active Customers',
+    title: 'Активных клиентов',
     value: '892',
     change: -2.4,
-    changeLabel: 'vs last period',
+    changeLabel: 'к пред. периоду',
     icon: 'line',
     color: 'chart-4',
   },
   {
     id: '5',
-    title: 'Conversion Rate',
-    value: '4.2%',
+    title: 'Конверсия',
+    value: '4,2%',
     change: 0.8,
-    changeLabel: 'improvement',
+    changeLabel: 'улучшение',
     icon: 'trending',
     color: 'chart-5',
   },
 ];
 
 export const mockLineData: ChartData[] = [
-  { name: 'Jan', value: 65000 },
-  { name: 'Feb', value: 72000 },
-  { name: 'Mar', value: 68000 },
-  { name: 'Apr', value: 85000 },
-  { name: 'May', value: 92000 },
-  { name: 'Jun', value: 98000 },
-  { name: 'Jul', value: 105000 },
-  { name: 'Aug', value: 112000 },
+  { name: 'Янв', value: 65000 },
+  { name: 'Фев', value: 72000 },
+  { name: 'Мар', value: 68000 },
+  { name: 'Апр', value: 85000 },
+  { name: 'Май', value: 92000 },
+  { name: 'Июн', value: 98000 },
+  { name: 'Июл', value: 105000 },
+  { name: 'Авг', value: 112000 },
 ];
 
 export const mockBarData: ChartData[] = [
-  { name: 'North', value: 245000 },
-  { name: 'South', value: 198000 },
-  { name: 'East', value: 215000 },
-  { name: 'West', value: 189000 },
+  { name: 'Север', value: 245000 },
+  { name: 'Юг', value: 198000 },
+  { name: 'Восток', value: 215000 },
+  { name: 'Запад', value: 189000 },
 ];
 
 export const mockPieData: ChartData[] = [
-  { name: 'Electronics', value: 45 },
-  { name: 'Hardware', value: 25 },
-  { name: 'Software', value: 18 },
-  { name: 'Services', value: 12 },
+  { name: 'Электроника', value: 45 },
+  { name: 'Оборудование', value: 25 },
+  { name: 'ПО', value: 18 },
+  { name: 'Услуги', value: 12 },
 ];
 
 export const mockAnalysisResult: AnalysisResult = {
@@ -131,79 +131,79 @@ export const mockAnalysisResult: AnalysisResult = {
 
 export const createMockReport = (): Report => ({
   id: 'rpt-' + Date.now(),
-  title: 'Sales Analysis Report',
+  title: 'Отчёт по анализу продаж',
   createdAt: new Date(),
   sections: [
     {
       id: 'exec-summary',
-      title: 'Executive Summary',
-      content: `This analysis covers 1,247 sales transactions across 8 data dimensions. Key findings indicate strong revenue growth of 12.5% compared to the previous period, with Electronics emerging as the leading category accounting for 45% of total sales.
+      title: 'Резюме для руководства',
+      content: `Данный анализ охватывает 1 247 транзакций продаж по 8 параметрам данных. Ключевые выводы указывают на сильный рост выручки на 12,5% по сравнению с предыдущим периодом. Электроника стала лидирующей категорией, составляя 45% от общего объёма продаж.
 
-The data reveals consistent upward trends in monthly revenue, with a notable acceleration in the second quarter. Regional performance shows balanced distribution, with the North region leading at $245,000 in sales.`,
+Данные показывают устойчивые восходящие тренды в ежемесячной выручке с заметным ускорением во втором квартале. Региональные показатели демонстрируют сбалансированное распределение, при этом Северный регион лидирует с объёмом продаж ₽245 000.`,
       editable: true,
     },
     {
       id: 'key-insights',
-      title: 'Key Insights',
-      content: `1. Revenue Performance: Total revenue reached $847,320, exceeding targets by 8%.
+      title: 'Ключевые инсайты',
+      content: `1. Показатели выручки: Общая выручка достигла ₽847 320, превысив целевые показатели на 8%.
 
-2. Category Analysis: Electronics dominates with 45% market share, followed by Hardware (25%) and Software (18%).
+2. Анализ категорий: Электроника доминирует с долей рынка 45%, за ней следуют Оборудование (25%) и ПО (18%).
 
-3. Customer Behavior: Average order value increased to $2,156, indicating successful upselling strategies.
+3. Поведение клиентов: Средний чек увеличился до ₽2 156, что указывает на успешные стратегии допродаж.
 
-4. Regional Trends: North region shows strongest growth, while West region presents opportunities for improvement.
+4. Региональные тренды: Северный регион показывает самый сильный рост, в то время как Западный регион представляет возможности для улучшения.
 
-5. Conversion Metrics: The 4.2% conversion rate represents a 0.8% improvement from previous benchmarks.`,
+5. Метрики конверсии: Показатель конверсии 4,2% представляет улучшение на 0,8% по сравнению с предыдущими показателями.`,
       editable: true,
     },
     {
       id: 'forecast',
-      title: 'Forecast & Scenarios',
-      content: `Based on current trends and market conditions, we present three scenarios:
+      title: 'Прогноз и сценарии',
+      content: `На основе текущих трендов и рыночных условий мы представляем три сценария:
 
-OPTIMISTIC SCENARIO:
-Continued momentum could push Q4 revenue to $1.2M if Electronics demand sustains and regional expansion succeeds.
+ОПТИМИСТИЧНЫЙ СЦЕНАРИЙ:
+Продолжение текущей динамики может увеличить выручку Q4 до ₽1,2 млн при сохранении спроса на Электронику и успешном региональном расширении.
 
-BASELINE SCENARIO:
-Maintaining current trajectory suggests stable 10-12% quarterly growth, reaching approximately $950K in Q4.
+БАЗОВЫЙ СЦЕНАРИЙ:
+Поддержание текущей траектории предполагает стабильный квартальный рост 10-12%, достигая примерно ₽950 000 в Q4.
 
-RISK SCENARIO:
-Market fluctuations or supply chain issues could reduce growth to 5-7%, with Q4 revenue around $880K.
+РИСКОВЫЙ СЦЕНАРИЙ:
+Рыночные колебания или проблемы с цепочкой поставок могут снизить рост до 5-7%, с выручкой Q4 около ₽880 000.
 
-Key assumptions include stable market conditions, maintained customer acquisition rates, and no major competitive disruptions.`,
+Ключевые допущения включают стабильные рыночные условия, сохранение темпов привлечения клиентов и отсутствие серьёзных конкурентных изменений.`,
       editable: true,
     },
     {
       id: 'recommendations',
-      title: 'Recommendations',
-      content: `1. EXPAND ELECTRONICS LINE: Given the 45% revenue contribution, consider expanding product offerings in this category.
+      title: 'Рекомендации',
+      content: `1. РАСШИРИТЬ ЛИНЕЙКУ ЭЛЕКТРОНИКИ: Учитывая вклад в выручку 45%, рассмотрите расширение ассортимента в этой категории.
 
-2. WEST REGION FOCUS: Implement targeted campaigns to boost underperforming Western sales territory.
+2. ФОКУС НА ЗАПАДНЫЙ РЕГИОН: Внедрите целевые кампании для повышения показателей отстающей Западной территории продаж.
 
-3. CUSTOMER RETENTION: With a slight decline in active customers (-2.4%), invest in loyalty programs.
+3. УДЕРЖАНИЕ КЛИЕНТОВ: При небольшом снижении активных клиентов (-2,4%) инвестируйте в программы лояльности.
 
-4. INVENTORY OPTIMIZATION: Align stock levels with demand patterns to reduce holding costs.
+4. ОПТИМИЗАЦИЯ ЗАПАСОВ: Согласуйте уровни запасов с паттернами спроса для снижения затрат на хранение.
 
-5. PRICING STRATEGY: The increased AOV suggests room for strategic price optimization in high-demand products.`,
+5. ЦЕНОВАЯ СТРАТЕГИЯ: Рост среднего чека предполагает возможность стратегической оптимизации цен на товары с высоким спросом.`,
       editable: true,
     },
     {
       id: 'risks',
-      title: 'Risks & Limitations',
-      content: `DATA LIMITATIONS:
-- Analysis covers a single reporting period
-- External market factors not fully captured
-- Customer sentiment data not included
+      title: 'Риски и ограничения',
+      content: `ОГРАНИЧЕНИЯ ДАННЫХ:
+- Анализ охватывает один отчётный период
+- Внешние рыночные факторы не полностью учтены
+- Данные об удовлетворённости клиентов не включены
 
-METHODOLOGY NOTES:
-- Forecasts are scenario-based, not predictive models
-- Correlations observed may not imply causation
-- Regional comparisons assume similar market conditions
+МЕТОДОЛОГИЧЕСКИЕ ЗАМЕЧАНИЯ:
+- Прогнозы основаны на сценариях, а не на предиктивных моделях
+- Обнаруженные корреляции могут не означать причинно-следственную связь
+- Региональные сравнения предполагают схожие рыночные условия
 
-RECOMMENDATIONS:
-- Validate insights with domain experts
-- Consider additional data sources for deeper analysis
-- Monitor assumptions underlying forecast scenarios`,
+РЕКОМЕНДАЦИИ:
+- Проверьте инсайты с отраслевыми экспертами
+- Рассмотрите дополнительные источники данных для более глубокого анализа
+- Отслеживайте допущения, лежащие в основе сценариев прогноза`,
       editable: true,
     },
   ],

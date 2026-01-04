@@ -31,14 +31,14 @@ const colorMap: Record<string, string> = {
 export function InsightsScreen({ insights, onBack, onViewCharts, onGenerateReport }: InsightsScreenProps) {
   return (
     <MobileContainer
-      header={<AppHeader title="Key Insights" showBack onBack={onBack} />}
+      header={<AppHeader title="Ключевые инсайты" showBack onBack={onBack} />}
       footer={
         <div className="p-4 space-y-2">
           <Button variant="cta" size="lg" className="w-full" onClick={onGenerateReport}>
-            Generate Report
+            Сгенерировать отчёт
           </Button>
           <Button variant="outline" size="lg" className="w-full" onClick={onViewCharts}>
-            View Charts
+            Посмотреть графики
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
@@ -50,9 +50,9 @@ export function InsightsScreen({ insights, onBack, onViewCharts, onGenerateRepor
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4">
             <BarChart3 className="w-8 h-8 text-primary" />
           </div>
-          <h2 className="text-xl font-bold text-foreground mb-1">Analysis Complete</h2>
+          <h2 className="text-xl font-bold text-foreground mb-1">Анализ завершён</h2>
           <p className="text-sm text-muted-foreground">
-            We found {insights.length} key insights in your data
+            Мы нашли {insights.length} ключевых инсайтов в ваших данных
           </p>
         </div>
 
@@ -112,12 +112,12 @@ export function InsightsScreen({ insights, onBack, onViewCharts, onGenerateRepor
               <span className="text-sm">🤖</span>
             </div>
             <div>
-              <h4 className="font-medium text-foreground mb-1">AI Summary</h4>
+              <h4 className="font-medium text-foreground mb-1">Резюме ИИ</h4>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Your data shows strong performance with consistent growth trends. 
-                The top category accounts for the majority of results, suggesting 
-                a focused strategy is working well. Consider the recommendations 
-                in the full report for optimization opportunities.
+                Ваши данные демонстрируют сильные показатели с устойчивыми трендами роста. 
+                Топовая категория составляет большую часть результатов, что говорит 
+                о том, что сфокусированная стратегия работает хорошо. Ознакомьтесь с рекомендациями 
+                в полном отчёте для поиска возможностей оптимизации.
               </p>
             </div>
           </div>

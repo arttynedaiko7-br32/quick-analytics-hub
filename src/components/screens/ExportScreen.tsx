@@ -31,8 +31,8 @@ export function ExportScreen({ reportId, onBack, onDownloadPdf, onStartOver }: E
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Data Analysis Report',
-          text: 'Check out this data analysis report',
+          title: 'Аналитический отчёт',
+          text: 'Посмотрите этот аналитический отчёт',
           url: shareUrl,
         });
       } catch (err) {
@@ -44,16 +44,16 @@ export function ExportScreen({ reportId, onBack, onDownloadPdf, onStartOver }: E
   };
 
   return (
-    <MobileContainer header={<AppHeader title="Export & Share" showBack onBack={onBack} />}>
+    <MobileContainer header={<AppHeader title="Экспорт и отправка" showBack onBack={onBack} />}>
       <div className="px-4 py-6 space-y-6">
         {/* Success Header */}
         <div className="text-center py-6 fade-in">
           <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
             <Check className="w-10 h-10 text-success" />
           </div>
-          <h2 className="text-2xl font-bold text-foreground mb-2">Report Ready!</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Отчёт готов!</h2>
           <p className="text-muted-foreground">
-            Your analysis is complete. Download or share your report.
+            Ваш анализ завершён. Скачайте или поделитесь отчётом.
           </p>
         </div>
 
@@ -64,13 +64,13 @@ export function ExportScreen({ reportId, onBack, onDownloadPdf, onStartOver }: E
               <FileText className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">Download PDF</h3>
-              <p className="text-sm text-muted-foreground">Get a formatted report document</p>
+              <h3 className="font-semibold text-foreground">Скачать PDF</h3>
+              <p className="text-sm text-muted-foreground">Получите отформатированный документ</p>
             </div>
           </div>
           <Button variant="cta" size="lg" className="w-full" onClick={onDownloadPdf}>
             <Download className="w-4 h-4 mr-2" />
-            Download PDF
+            Скачать PDF
           </Button>
         </div>
 
@@ -81,8 +81,8 @@ export function ExportScreen({ reportId, onBack, onDownloadPdf, onStartOver }: E
               <Share2 className="w-6 h-6 text-chart-5" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">Share Report</h3>
-              <p className="text-sm text-muted-foreground">Send a read-only link to others</p>
+              <h3 className="font-semibold text-foreground">Поделиться отчётом</h3>
+              <p className="text-sm text-muted-foreground">Отправьте ссылку для просмотра</p>
             </div>
           </div>
           
@@ -105,7 +105,7 @@ export function ExportScreen({ reportId, onBack, onDownloadPdf, onStartOver }: E
           {navigator.share && (
             <Button variant="outline" size="lg" className="w-full" onClick={handleShare}>
               <Share2 className="w-4 h-4 mr-2" />
-              Share
+              Поделиться
             </Button>
           )}
         </div>
@@ -113,7 +113,7 @@ export function ExportScreen({ reportId, onBack, onDownloadPdf, onStartOver }: E
         {/* Start Over */}
         <div className="pt-4">
           <Button variant="ghost" size="lg" className="w-full" onClick={onStartOver}>
-            Analyze Another Dataset
+            Анализировать другой набор данных
           </Button>
         </div>
       </div>

@@ -21,7 +21,7 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
 
   return (
     <MobileContainer
-      header={<AppHeader title="Data Preview" showBack onBack={onBack} />}
+      header={<AppHeader title="Предпросмотр данных" showBack onBack={onBack} />}
       footer={
         <div className="p-4">
           <Button 
@@ -30,7 +30,7 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
             className="w-full"
             onClick={() => onStartAnalysis(selectedSheet)}
           >
-            Start Analysis
+            Начать анализ
           </Button>
         </div>
       }
@@ -45,7 +45,7 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-foreground truncate">{file.name}</h3>
               <p className="text-sm text-muted-foreground">
-                {(file.size / 1024).toFixed(1)} KB
+                {(file.size / 1024).toFixed(1)} КБ
               </p>
             </div>
           </div>
@@ -55,11 +55,11 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
             <div className="space-y-2">
               <label className="text-sm font-medium text-foreground flex items-center gap-2">
                 <Table className="w-4 h-4" />
-                Select Sheet
+                Выберите лист
               </label>
               <Select value={selectedSheet} onValueChange={setSelectedSheet}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a sheet" />
+                  <SelectValue placeholder="Выберите лист" />
                 </SelectTrigger>
                 <SelectContent>
                   {file.sheets.map((sheet) => (
@@ -67,7 +67,7 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
                       <div className="flex items-center justify-between gap-4">
                         <span>{sheet.name}</span>
                         <span className="text-xs text-muted-foreground">
-                          {sheet.rowCount} rows
+                          {sheet.rowCount} строк
                         </span>
                       </div>
                     </SelectItem>
@@ -83,14 +83,14 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
               <Rows3 className="w-4 h-4 text-primary" />
               <div>
                 <p className="text-lg font-semibold text-foreground">{currentSheet?.rowCount}</p>
-                <p className="text-xs text-muted-foreground">Rows</p>
+                <p className="text-xs text-muted-foreground">Строк</p>
               </div>
             </div>
             <div className="flex items-center gap-2 p-3 rounded-lg bg-secondary">
               <Columns3 className="w-4 h-4 text-primary" />
               <div>
                 <p className="text-lg font-semibold text-foreground">{currentSheet?.columnCount}</p>
-                <p className="text-xs text-muted-foreground">Columns</p>
+                <p className="text-xs text-muted-foreground">Столбцов</p>
               </div>
             </div>
           </div>
@@ -99,8 +99,8 @@ export function PreviewScreen({ file, onBack, onStartAnalysis }: PreviewScreenPr
         {/* Data Preview Table */}
         <div className="card-elevated overflow-hidden slide-up">
           <div className="px-4 py-3 border-b border-border bg-muted/30">
-            <h4 className="font-medium text-foreground">Data Preview</h4>
-            <p className="text-xs text-muted-foreground">First {currentSheet?.preview.length} rows</p>
+            <h4 className="font-medium text-foreground">Предпросмотр данных</h4>
+            <p className="text-xs text-muted-foreground">Первые {currentSheet?.preview.length} строк</p>
           </div>
           <ScrollArea className="h-[300px]">
             <div className="overflow-x-auto">
