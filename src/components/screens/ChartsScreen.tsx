@@ -44,11 +44,11 @@ export function ChartsScreen({ lineData, barData, pieData, onBack, onGoToReport 
 
   return (
     <MobileContainer
-      header={<AppHeader title="Data Visualization" showBack onBack={onBack} />}
+      header={<AppHeader title="Визуализация данных" showBack onBack={onBack} />}
       footer={
         <div className="p-4">
           <Button variant="cta" size="lg" className="w-full" onClick={onGoToReport}>
-            Go to Report
+            Перейти к отчёту
           </Button>
         </div>
       }
@@ -58,13 +58,13 @@ export function ChartsScreen({ lineData, barData, pieData, onBack, onGoToReport 
         <Tabs value={activeChart} onValueChange={(v) => setActiveChart(v as typeof activeChart)} className="w-full">
           <TabsList className="w-full grid grid-cols-3 h-11">
             <TabsTrigger value="line" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-              Line
+              Линия
             </TabsTrigger>
             <TabsTrigger value="bar" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-              Bar
+              Столбцы
             </TabsTrigger>
             <TabsTrigger value="pie" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-              Pie
+              Круговая
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -172,7 +172,7 @@ export function ChartsScreen({ lineData, barData, pieData, onBack, onGoToReport 
               {activeChart === 'line' ? lineData.length : 
                activeChart === 'bar' ? barData.length : pieData.length}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">Data Points</p>
+            <p className="text-xs text-muted-foreground mt-1">Точек данных</p>
           </div>
           <div className="insight-card text-center">
             <p className="text-2xl font-bold text-primary">
@@ -184,7 +184,7 @@ export function ChartsScreen({ lineData, barData, pieData, onBack, onGoToReport 
                  activeChart === 'bar' ? barData.length : pieData.length)
               )}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">Average Value</p>
+            <p className="text-xs text-muted-foreground mt-1">Среднее значение</p>
           </div>
         </div>
       </div>

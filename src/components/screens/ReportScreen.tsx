@@ -45,12 +45,12 @@ export function ReportScreen({ report, onBack, onExport, onUpdateSection }: Repo
     <MobileContainer
       header={
         <AppHeader 
-          title="AI Report" 
+          title="ИИ-отчёт" 
           showBack 
           onBack={onBack}
           rightAction={
             <div className="text-xs text-muted-foreground">
-              {new Date(report.createdAt).toLocaleDateString()}
+              {new Date(report.createdAt).toLocaleDateString('ru-RU')}
             </div>
           }
         />
@@ -59,7 +59,7 @@ export function ReportScreen({ report, onBack, onExport, onUpdateSection }: Repo
         <div className="p-4">
           <Button variant="cta" size="lg" className="w-full" onClick={onExport}>
             <FileText className="w-4 h-4 mr-2" />
-            Export to PDF
+            Экспорт в PDF
           </Button>
         </div>
       }
@@ -72,7 +72,7 @@ export function ReportScreen({ report, onBack, onExport, onUpdateSection }: Repo
           </div>
           <h2 className="text-lg font-bold text-foreground mb-1">{report.title}</h2>
           <p className="text-sm text-muted-foreground">
-            AI-Generated Analysis Report
+            Аналитический отчёт на базе ИИ
           </p>
         </div>
 
@@ -118,11 +118,11 @@ export function ReportScreen({ report, onBack, onExport, onUpdateSection }: Repo
                         <div className="flex gap-2 justify-end">
                           <Button variant="ghost" size="sm" onClick={cancelEdit}>
                             <X className="w-4 h-4 mr-1" />
-                            Cancel
+                            Отмена
                           </Button>
                           <Button variant="default" size="sm" onClick={() => saveEdit(section.id)}>
                             <Check className="w-4 h-4 mr-1" />
-                            Save
+                            Сохранить
                           </Button>
                         </div>
                       </div>
@@ -139,7 +139,7 @@ export function ReportScreen({ report, onBack, onExport, onUpdateSection }: Repo
                             onClick={() => startEditing(section)}
                           >
                             <Edit2 className="w-3 h-3 mr-1" />
-                            Edit
+                            Редактировать
                           </Button>
                         )}
                       </>
