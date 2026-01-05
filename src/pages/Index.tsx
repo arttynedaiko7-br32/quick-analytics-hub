@@ -7,6 +7,8 @@ import { ChartsScreen } from '@/components/screens/ChartsScreen';
 import { ReportScreen } from '@/components/screens/ReportScreen';
 import { ExportScreen } from '@/components/screens/ExportScreen';
 import { AppStep, UploadedFile, Report } from '@/types/analysis';
+import { uploadFile } from '@/lib/backend';
+
 import { 
   createMockUploadedFile, 
   mockInsights, 
@@ -23,16 +25,38 @@ export default function Index() {
   const [selectedSheet, setSelectedSheet] = useState<string>('');
   const [report, setReport] = useState<Report | null>(null);
 
-  const handleFileUpload = useCallback((file: File) => {
-    // In a real app, this would parse the file
-    const mockFile = createMockUploadedFile(file.name);
-    setUploadedFile(mockFile);
+
+const handleFileUpload = useCallback(async (file: File) => {
+  try {
+    const result = await uploadFile(file);
+    const uploadedFile: UploadedFile = {
+     name: file.name,
+     size: file.size,
+     type: 'excel',
+     sheets: result.sheets.map((s: any) => ({
+     name: s.name,
+     rows: s.rows,
+     columns: s.columns,
+     preview: s.preview,
+  })),
+};
+
+    setUploadedFile(uploadedFile);
     setStep('preview');
+
     toast({
       title: 'File uploaded',
       description: `${file.name} loaded successfully`,
     });
-  }, []);
+  } catch (e) {
+    toast({
+      title: 'Upload failed',
+      description: 'Could not process the file',
+      variant: 'destructive',
+    });
+  }
+}, []);
+
 
   const handleGoogleSheetLink = useCallback((url: string) => {
     // In a real app, this would fetch the sheet
