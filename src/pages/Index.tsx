@@ -29,17 +29,25 @@ export default function Index() {
 const handleFileUpload = useCallback(async (file: File) => {
   try {
     const result = await uploadFile(file);
+
     const uploadedFile: UploadedFile = {
-     name: file.name,
-     size: file.size,
-     type: 'excel',
-     sheets: result.sheets.map((s: any) => ({
-     name: s.name,
-     rows: s.rows,
-     columns: s.columns,
-     preview: s.preview,
-  })),
-};
+      name: file.name,
+      size: file.size,
+      type: 'excel',
+      sheets: (result.sheets ?? []).map((s: any) => {
+        const headers =
+          s.headers ??
+          (s.preview?.[0] ? Object.keys(s.preview[0]) : []);
+
+        return {
+          name: s.name,
+          rowCount: s.rowCount ?? s.rows ?? s.preview?.length ?? 0,
+          columnCount: s.columnCount ?? s.columns ?? headers.length,
+          headers,
+          preview: s.preview ?? [],
+        };
+      }),
+    };
 
     setUploadedFile(uploadedFile);
     setStep('preview');
@@ -49,6 +57,7 @@ const handleFileUpload = useCallback(async (file: File) => {
       description: `${file.name} loaded successfully`,
     });
   } catch (e) {
+    console.error(e);
     toast({
       title: 'Upload failed',
       description: 'Could not process the file',
@@ -56,6 +65,7 @@ const handleFileUpload = useCallback(async (file: File) => {
     });
   }
 }, []);
+
 
 
   const handleGoogleSheetLink = useCallback((url: string) => {
