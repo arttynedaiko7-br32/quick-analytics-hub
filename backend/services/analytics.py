@@ -153,4 +153,28 @@ def analyze(data: list[dict]):
     for curr in result["totals"]["by_currency"]:
         result["totals"]["by_currency"][curr] = round(result["totals"]["by_currency"][curr], 2)
 
+    # --- Генерация данных для графиков ---
+    result["charts"] = {}
+
+    # Line chart: тренды по периодам (если есть date_col)
+    if date_col:
+        line_data = []
+        grouped = df.groupby(date_col).sum(numeric_only=True)
+        for period, row in grouped.iterrows():
+            total = row.sum()
+            line_data.append({"name": str(period), "value": round(float(total), 2)})
+        result["charts"]["line"] = line_data
+
+    # Bar chart: суммы по финансовым колонкам
+    bar_data = []
+    for col, stats in result["financial"].items():
+        bar_data.append({"name": col, "value": stats["total"]})
+    result["charts"]["bar"] = bar_data
+
+    # Pie chart: распределение по валютам
+    pie_data = []
+    for curr, amount in result["totals"]["by_currency"].items():
+        pie_data.append({"name": curr, "value": amount})
+    result["charts"]["pie"] = pie_data
+
     return result
