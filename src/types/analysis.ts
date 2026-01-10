@@ -4,6 +4,7 @@ export interface DataSheet {
   columnCount: number;
   headers: string[];
   preview: Record<string, string | number>[];
+  data: Record<string, string | number>[];
 }
 
 export interface UploadedFile {

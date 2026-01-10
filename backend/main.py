@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from pydantic import BaseModel
 import requests
 import io
 
@@ -22,6 +23,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class GoogleSheetRequest(BaseModel):
+    url: str
+
 # ---------- 🆕 ГЛАВНАЯ СТРАНИЦА ----------
 @app.get("/")
 async def root():
@@ -41,7 +45,8 @@ async def upload_file(file: UploadFile = File(...)):
 
 # ---------- Google Sheets ----------
 @app.post("/upload/google-sheet")
-async def upload_google_sheet(url: str = Form(...)):
+async def upload_google_sheet(request: GoogleSheetRequest):
+    url = request.url
     try:
         if "/spreadsheets/d/" not in url:
             raise HTTPException(status_code=400, detail="Некорректная ссылка Google Sheets")

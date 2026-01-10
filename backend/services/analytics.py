@@ -60,16 +60,21 @@ def analyze(data: list[dict]):
         "meta": {}
     }
 
-    # --- 1. Поиск даты (без изменений) ---
+    # --- 1. Поиск даты (расширенный поиск) ---
     date_col = None
     for col in df.columns:
-        if pd.api.types.is_datetime64_any_dtype(df[col]):
+        col_lower = col.lower()
+        if 'месяц' in col_lower or 'период' in col_lower or 'год' in col_lower or 'date' in col_lower or 'дата' in col_lower:
             date_col = col; break
-        if df[col].dtype == object:
-            try:
-                pd.to_datetime(df[col].dropna().head(10), errors='raise')
+    if not date_col:
+        for col in df.columns:
+            if pd.api.types.is_datetime64_any_dtype(df[col]):
                 date_col = col; break
-            except: continue
+            if df[col].dtype == object:
+                try:
+                    pd.to_datetime(df[col].dropna().head(10), errors='raise')
+                    date_col = col; break
+                except: continue
     if not date_col:
         # Fallback (первая колонка)
         if not df.empty: date_col = df.columns[0]
