@@ -5,13 +5,9 @@ from pydantic import BaseModel
 import requests
 import io
 
-# Импорты парсеров (поддержка и папки services, и корня)
-try:
-    from services.file_parser import parse_excel
-    from services.analytics import analyze as basic_analytics
-except ImportError:
-    from file_parser import parse_excel
-    from analytics import analyze as basic_analytics
+# Импорты парсеров
+from services.file_parser import parse_excel
+from services.analytics import analyze as basic_analytics
 
 app = FastAPI(title="Quick Analytics API")
 
