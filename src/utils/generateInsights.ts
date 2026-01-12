@@ -98,5 +98,49 @@ export function generateInsights(backendAnalysis: any): InsightCard[] {
     });
   }
 
+// --- НАЧАЛО: ИСПРАВЛЕННЫЙ БЛОК ДЛЯ КОРРЕЛЯЦИИ ---
+  if (backendAnalysis.correlations) {
+    const processedPairs = new Set();
+    const threshold = 0.7; // Порог для сильной корреляции
+
+    for (const col1 in backendAnalysis.correlations) {
+      for (const col2 in backendAnalysis.correlations[col1]) {
+        if (col1 === col2) continue;
+
+        const pairKey = [col1, col2].sort().join('--');
+        if (processedPairs.has(pairKey)) continue;
+
+        const value = backendAnalysis.correlations[col1][col2];
+        
+        if (typeof value !== 'number') continue;
+        
+        if (Math.abs(value) >= threshold) {
+          const correlationPercent = (value * 100).toFixed(0);
+          let insight;
+
+          // ИСПРАВЛЕНИЕ: Теперь 'content' формируется корректно,
+          // подставляя имена колонок `col1` и `col2` в текст.
+          if (value > 0) {
+            insight = {
+              id: `corr-${pairKey}`,
+              type: 'correlation',
+              title: 'Сильная положительная связь',
+              value: `Показатели "${col1}" и "${col2}" сильно связаны и, как правило, движутся в одном направлении. (Корреляция: ${correlationPercent}%)`,
+            };
+          } else {
+            insight = {
+              id: `corr-${pairKey}`,
+              type: 'correlation',
+              title: 'Сильная обратная связь',
+              value: `Показатели "${col1}" и "${col2}" имеют сильную обратную связь: когда один растет, другой имеет тенденцию к снижению. (Корреляция: ${correlationPercent}%)`,
+            };
+          }
+          insights.push(insight);
+        }
+        processedPairs.add(pairKey);
+      }
+    }
+  }
+  // --- КОНЕЦ: ИСПРАВЛЕННОГО БЛОКА ---
   return insights;
 }

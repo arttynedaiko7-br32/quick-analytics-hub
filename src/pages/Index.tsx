@@ -123,6 +123,7 @@ const handleFileUpload = useCallback(async (file: File) => {
         lineChartData: backendAnalysis.charts?.line || [],
         barChartData: backendAnalysis.charts?.bar || [],
         pieChartData: backendAnalysis.charts?.pie || [],
+       // correlationData: backendAnalysis.correlations || null,
         statistics: {
           totalRows: sheet.rowCount,
           totalColumns: sheet.columnCount,

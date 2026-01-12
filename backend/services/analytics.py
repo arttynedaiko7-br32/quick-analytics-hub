@@ -52,6 +52,8 @@ def analyze(data: list[dict]):
         "extremes": {},
         "trends": {},
         "anomalies": {},
+        "correlations": {},
+
         "totals": {
             # Теперь здесь будет разбивка по валютам!
             "by_currency": {}, 
@@ -135,14 +137,19 @@ def analyze(data: list[dict]):
 
         # Экстремумы и Аномалии (без изменений)
         max_idx = val.idxmax()
-        p_val = df.loc[max_idx, date_col] if date_col else "Unknown"
+        min_idx = val.idxmin()
+        p_max = df.loc[max_idx, date_col] if date_col else "Unknown"
+        p_min = df.loc[min_idx, date_col] if date_col else "Unknown"
         result["extremes"][col] = {
-            "max": {"value": round(float(val[max_idx]), 2), "period": str(p_val)}
+            "max": {"value": round(float(val[max_idx]), 2), "period": str(p_max)},
+            "min": {"value": round(float(val[min_idx]), 2), "period": str(p_min)}
         }
         
         std = float(val.std())
         if std > 0:
-            anomalies = df.loc[val.index][val > avg + 2*std]
+            high_anomalies = df.loc[val.index][val > avg + 2*std]
+            low_anomalies = df.loc[val.index][val < avg - 2*std]
+            anomalies = pd.concat([high_anomalies, low_anomalies]).sort_index()
             if not anomalies.empty:
                 arr = []
                 for idx, r in anomalies.iterrows():
@@ -176,5 +183,10 @@ def analyze(data: list[dict]):
     for curr, amount in result["totals"]["by_currency"].items():
         pie_data.append({"name": curr, "value": amount})
     result["charts"]["pie"] = pie_data
+
+    # --- Корреляция между числовыми колонками ---
+    if len(numeric_cols) > 1:
+        corr_matrix = df[numeric_cols].corr().round(3)
+        result["correlations"] = corr_matrix.to_dict()
 
     return result
